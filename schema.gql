@@ -1,0 +1,165 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Post {
+  """id of the user"""
+  postId: String!
+
+  """first name of the user"""
+  title: String!
+
+  """last name of the user"""
+  body: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  userId: String!
+  user: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type User {
+  """id of the user"""
+  userId: String!
+
+  """Example field (placeholder)"""
+  exampleField: Int!
+
+  """first name of the user"""
+  firstName: String!
+
+  """last name of the user"""
+  lastName: String!
+
+  """email of the user"""
+  email: String!
+
+  """role of the user"""
+  role: String!
+
+  """password of the user"""
+  password: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  posts: [Post!]
+}
+
+type UserResponseModel {
+  """id of the user"""
+  userId: String!
+
+  """Example field (placeholder)"""
+  exampleField: Int!
+
+  """first name of the user"""
+  firstName: String!
+
+  """last name of the user"""
+  lastName: String!
+
+  """email of the user"""
+  email: String!
+
+  """role of the user"""
+  role: String!
+  posts: [Post!]
+}
+
+type AuthResponse {
+  """first name of the user"""
+  token: String!
+
+  """first name of the user"""
+  message: String!
+
+  """User email"""
+  email: String!
+
+  """User first name"""
+  firstName: String!
+
+  """User last name"""
+  lastName: String!
+}
+
+type Query {
+  users: [UserResponseModel!]!
+  singleUser: UserResponseModel!
+  user(userId: String!): UserResponseModel!
+  posts: [Post!]!
+  post(postId: String!): Post!
+  me: User!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): UserResponseModel!
+  updateUser(updateUserInput: UpdateUserInput!): UserResponseModel!
+  removeUser(userId: String!): UserResponseModel!
+  addNewPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  login(email: String!): String!
+  singIn(authInput: AuthInput!): AuthResponse!
+}
+
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+
+  """first name of the user"""
+  firstName: String!
+
+  """last name of the user"""
+  lastName: String!
+
+  """email of the user"""
+  email: String!
+
+  """role of the user"""
+  role: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+
+  """first name of the user"""
+  firstName: String
+
+  """last name of the user"""
+  lastName: String
+
+  """email of the user"""
+  email: String
+
+  """role of the user"""
+  role: String
+  password: String
+  userId: String!
+}
+
+input CreatePostInput {
+  """title of the post"""
+  title: String!
+
+  """description of the desc"""
+  body: String!
+}
+
+input UpdatePostInput {
+  """title of the post"""
+  title: String
+
+  """description of the desc"""
+  body: String
+  postId: String!
+}
+
+input AuthInput {
+  email: String!
+  password: String!
+}
